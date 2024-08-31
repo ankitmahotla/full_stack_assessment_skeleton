@@ -129,7 +129,42 @@ docker-compose -f docker-compose.initial.yml up --build -d
 
 ### solution
 
-> explain briefly your solution for this problem here
+# Database Normalization Solution
+
+## Key Problem-Solving Points
+
+1. Created three tables to normalize the data structure:
+   - `user`: Stores user information
+   - `home`: Stores home information
+   - `user_home_interest`: Represents the many-to-many relationship between users and homes
+2. Implemented primary and foreign key constraints to maintain referential integrity.
+3. Migrated existing data from the original `user_home` table to the new structure.
+4. Removed the original denormalized `user_home` table.
+
+## Instructions to Run the Solution
+
+1. Ensure you have access to the MySQL database where `home_db` is located.
+2. Execute the SQL script using a MySQL client or command-line tool:
+   ```
+   mysql -u [username] -p [database_name] < /path/to/99_final_db_dump.sql
+   ```
+   Replace `[username]` with your MySQL username and `[database_name]` with `home_db`.
+
+## Instructions to Review the Solution
+
+After running the script, you can verify the new structure by running these queries:
+
+```sql
+SHOW TABLES;
+DESCRIBE user;
+DESCRIBE home;
+DESCRIBE user_home_interest;
+SELECT * FROM user;
+SELECT * FROM home;
+SELECT * FROM user_home_interest;
+```
+
+These queries will show the new table structures and the migrated data, allowing you to confirm that the normalization process was successful.
 
 ## 2. React SPA
 
